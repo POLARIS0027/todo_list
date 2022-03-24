@@ -1,0 +1,27 @@
+{%extends 'base.html' %}
+ 
+{% block title %}todo_list.html{% endblock %}
+ 
+{% block content %}
+
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;Todo List!! </h2>
+<br>
+   <ul>
+      <div class="row">
+        {% for todo in todo_list %}
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-header"><h4>{{todo.name}}</h4></div>
+            <div class="card-body">
+              <h5 class="card-title">{{ todo.description }}</h5>
+              <p class="card-text">마감 : {{ todo.date_deadline }} | {{ todo.remaining_days }}</p>
+              <a href="#" class="btn btn-primary">완료</a>
+              <a href="#" class="btn btn-primary">수정</a>
+              <a href="#" class="btn btn-primary bg-danger border-danger">삭제</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </ul>
+{% endblock %}

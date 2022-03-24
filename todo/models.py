@@ -13,7 +13,14 @@ class TodoList(models.Model):
     def remaining_days(self):
         delta = self.date_deadline - date.today()
         days = delta.days
-        return days
+        if days > 0:
+            return f'{days}일 남음'
+        elif days == 0:
+            return '오늘까지!!'
+        else:
+            days = abs(days)
+            return f'{days}일 지남'
+        
     
     def __str__(self):
         return f'{self.name} | {self.description} | {self.date_created} |       {self.date_deadline}'

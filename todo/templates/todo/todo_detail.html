@@ -1,0 +1,12 @@
+{%extends 'base.html' %}
+ 
+{% block title %}todo_list.html{% endblock %}
+ 
+{% block content %}
+<h1> {{ object.name }}</h1>
+<br>
+<h3> {{ object.description }}</h3>
+<h4> {{ object.date_deadline }}</h4>
+<h4> {{ object.remaining_days }}</h4>    
+
+{% endblock %}
