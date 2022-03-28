@@ -4,12 +4,13 @@
  
 {% block content %}
 
-<h2>&nbsp;&nbsp;&nbsp;&nbsp;Todo List!! </h2>
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;Todo List!!</a></h2>
+
 <br>
    <ul>
       <div class="row">
         {% for todo in todo_list %}
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card">
             <div class="card-header"><h4>{{todo.name}}</h4></div>
             <div class="card-body">
@@ -18,10 +19,14 @@
               <a href="#" class="btn btn-primary">완료</a>
               <a href="#" class="btn btn-primary">수정</a>
               <a href="#" class="btn btn-primary bg-danger border-danger">삭제</a>
+              <a href="{% url 'todo:detail' todo.id %}" class="btn btn-secondary">자세히</a>
             </div>
           </div>
         </div>
         {% endfor %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a href="{% url 'todo:list' %}" class="btn btn-primary mt-5" type="button" >목록 보기</a>
+        </div>
       </div>
     </ul>
 {% endblock %}

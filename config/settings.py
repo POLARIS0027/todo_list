@@ -124,3 +124,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# MEDIA_ROOT 설정 
+# 사용자가 업로드하는 미디어 정적 파일들의 기본 경로 
+MEDIA_ROOT = os.path.join(BASE_DIR, '.media')
+MEDIA_URL = '/media/'
+

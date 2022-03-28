@@ -3,11 +3,30 @@
 {% block title %}todo_list.html{% endblock %}
  
 {% block content %}
-<ul>
-    {% for todo in object_list %}
-    <li><a href="{% url 'todo:detail' todo.id %}">{{ todo.name }}</a> | 마감일: {{todo.date_deadline}} | 남은 기간: {{todo.remaining_days}}</li>
 
-    {% endfor %}
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
 
-</ul>
+                <th>할일</th>
+                <th>마감일</th>
+                <th>마감</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for todo in object_list %}
+            <tr>
+                <td><a href="{% url 'todo:detail' todo.id %}">{{todo.name }}</td>
+                <td>{{ todo.date_deadline}}</td>
+                <td>{{ todo.remaining_days}}</td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    
+    <hr/>
+    <a class="btn btn-primary pull-right" href="{% url 'todo:index' %}">인덱스로</a>
+    <div class="text-center"></div>
+
 {% endblock %}

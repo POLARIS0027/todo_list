@@ -13,4 +13,4 @@ class TodoListAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'date_created','date_deadline',          'remaining_days')
     list_filter = ['date_created']
     
-admin.site.register(TodoList, TodoListAdmin)
+admin.site.register(TodoList, TodoListAdmin,)
