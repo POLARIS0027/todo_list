@@ -1,0 +1,44 @@
+{%extends 'base.html' %}
+ 
+{% block title %}todo_delete.html{% endblock %}
+ 
+{% block content %}
+
+<div class="text-center">
+    <p class="text-primary">{{ object.name }}</p><br><br>
+    <p>{{ object.description}}</p>
+    <p>{{ object.date_deadline}}</p>
+    <p class="text-danger">{{ object.remaining_days}}</p>
+    <hr>
+    {% for image in todolist.todolist_images_set.all %}
+    <a href="{{ image.image.url }}">
+    <img src="{{ image.image.url }}" style="max-width: 20%; height: auto;"  alt="reference_image"></a>
+    {% endfor %}
+    <hr>
+    
+</div>
+
+<div class="text-center">
+    
+    <form action="" method="POST">
+    
+    {{ form }}
+    {% csrf_token %}
+<div class="field is-grouped is-grouped-centered">
+    
+    <p class="control">
+        해당 투두리스트를 삭제 하시겠습니까?
+      </p>
+  </div>
+    <p class="control">
+        
+      <input type="submit" class="btn btn-danger" value="삭제">
+      <a class="btn btn-secondary" href="{% url 'todo:list' %}">
+        취소
+      </a>
+    </p>
+    </form>
+</div>
+
+
+{% endblock %}

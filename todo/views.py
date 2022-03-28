@@ -2,7 +2,7 @@ from email.mime import image
 from django.forms import ImageField
 from django.shortcuts import render
 from todo.models import TodoList, TodoList_files, TodoList_images
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView, DeleteView
 
 # Create your views here.
 
@@ -20,4 +20,8 @@ class TodoListView(ListView):
 class TodoDetailView(DetailView):
     model = TodoList
     template_name = 'todo/todo_detail.html'
+    
+class TodoDeleteView(DeleteView):
+    model = TodoList
+    template_name = 'todo/todo_delete.html'
 

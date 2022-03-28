@@ -18,7 +18,7 @@
               <p class="card-text">마감 : {{ todo.date_deadline }} | {{ todo.remaining_days }}</p>
               <a href="#" class="btn btn-primary">완료</a>
               <a href="#" class="btn btn-primary">수정</a>
-              <a href="#" class="btn btn-primary bg-danger border-danger">삭제</a>
+              <a href="{% url 'todo:delete' todo.id %}" class="btn btn-primary bg-danger border-danger">삭제</a>
               <a href="{% url 'todo:detail' todo.id %}" class="btn btn-secondary">자세히</a>
             </div>
           </div>
