@@ -1,0 +1,29 @@
+{%extends 'base.html' %}
+ 
+{% block title %}todo_complete.html{% endblock %}
+ 
+{% block content %}
+<div class="text-center">
+    
+    <form action="" method="POST">
+    
+    {{ form }}
+    {% csrf_token %}
+<div class="field is-grouped is-grouped-centered">
+    
+    <p class="control">
+        할일을 끝내셨나요? 완료를 누르면 복구할수 없습니다.
+      </p>
+  </div>
+    <p class="control">
+        
+      <input type="submit" class="btn btn-danger" value="완료">
+      <a class="btn btn-secondary" href="{% url 'todo:index' %}">
+        취소
+      </a>
+    </p>
+    </form>
+</div>
+
+
+{% endblock %}

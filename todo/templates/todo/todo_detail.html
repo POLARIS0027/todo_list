@@ -17,7 +17,8 @@
        <hr>
        [이미지] 
        <a href="{{ todo.image.url }}">
-       <img src="{{ todo.image.url }}" style="max-width: 100%; height: auto;"  alt="reference_image"></a>
+       <img src="{{ todo.image.url }}" style="max-width: 50%; height: auto;"  alt="reference_image"></a>
+       클릭하시면 원본크기로 볼수 있습니다.
        </hr>
        {% endif %}
       
@@ -25,10 +26,11 @@
        <hr>
        [첨부파일]
        <a href="{{ todo.file.url }}">{{todo.file.name}}</a>
+       클릭해서 다운로드
       </hr>
        {% endif %}
   </div>
-  <a class="btn btn-secondary" href="{% url 'todo:list' %}" role="button">목록으로</a>
+  <a class="btn btn-secondary" href="{% url 'todo:list' %}" role="button">목록으로 보기</a>
   <a class="btn btn-danger" href="{% url 'todo:delete' object.id %}" role="button">삭제</a>
 
 {% endblock %}

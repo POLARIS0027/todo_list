@@ -28,6 +28,11 @@ class TodoDeleteView(DeleteView):
     model = TodoList
     template_name = 'todo/todo_delete.html'
     success_url = reverse_lazy('todo:index')
+    
+class TodoCompleteView(DeleteView):
+    model = TodoList
+    template_name = 'todo/todo_complete.html'
+    success_url = reverse_lazy('todo:index')
 
 class TodoUpdateView(UpdateView):
     model = TodoList
