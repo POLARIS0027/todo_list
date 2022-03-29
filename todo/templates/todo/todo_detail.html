@@ -1,25 +1,32 @@
 {%extends 'base.html' %}
  
-{% block title %}todo_list.html{% endblock %}
+{% block title %}todo_detail.html{% endblock %}
  
 {% block content %}
 
 <div class="card text-center" style="width: 105rem;">
     <div class="card-header">
-      <p class='text-primary'> 제목 : {{ object.name }}</p>
+      <p class='text-primary'> 제목 : {{ todo.name }}</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">내용 : {{object.description }}</li>
-      <li class="list-group-item">마감일 : {{object.date_deadline}}</li>
-      <li class="list-group-item"><p class="text-danger">마감 {{ object.remaining_days}}</p></li>
+      <li class="list-group-item">내용 : {{todo.description }}</li>
+      <li class="list-group-item">마감일 : {{todo.date_deadline}}</li>
+      <li class="list-group-item"><p class="text-danger">마감 {{ todo.remaining_days}}</p></li>
     </ul>
-    <hr>
-       관련 이미지 : 
-       {% for image in todolist.todolist_images_set.all %}
-       <a href="{{ image.image.url }}">
-       <img src="{{ image.image.url }}" style="max-width: 100%; height: auto;"  alt="reference_image"></a>
-       {% endfor %}
+       {% if todo.image %}
        <hr>
+       [이미지] 
+       <a href="{{ todo.image.url }}">
+       <img src="{{ todo.image.url }}" style="max-width: 100%; height: auto;"  alt="reference_image"></a>
+       </hr>
+       {% endif %}
+      
+       {% if todo.file %}
+       <hr>
+       [첨부파일]
+       <a href="{{ todo.file.url }}">{{todo.file.name}}</a>
+      </hr>
+       {% endif %}
   </div>
   <a class="btn btn-secondary" href="{% url 'todo:list' %}" role="button">목록으로</a>
   <a class="btn btn-danger" href="{% url 'todo:delete' object.id %}" role="button">삭제</a>

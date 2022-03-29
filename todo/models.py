@@ -9,6 +9,8 @@ class TodoList(models.Model):
     description = models.TextField(max_length=200, verbose_name="내용")
     date_created = models.DateField(auto_now_add=True, verbose_name="작성일")
     date_deadline = models.DateField(verbose_name="마감일")
+    image = models.ImageField(null=True, blank=True, upload_to="", verbose_name='이미지')
+    file = models.FileField(null=True, blank=True, upload_to="uploads/", verbose_name='파일')
     
     def remaining_days(self):
         delta = self.date_deadline - date.today()
@@ -25,10 +27,3 @@ class TodoList(models.Model):
     def __str__(self):
         return f'{self.name} | {self.description} | {self.date_created} |       {self.date_deadline}'
     
-class TodoList_images(models.Model):
-    todo = models.ForeignKey(TodoList, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='todo/images/%Y/%m', blank=True)
-    
-class TodoList_files(models.Model):
-    todo = models.ForeignKey(TodoList, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='todo/files/%Y/%m', blank=True)
