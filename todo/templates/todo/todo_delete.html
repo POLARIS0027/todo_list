@@ -9,13 +9,23 @@
     <p>{{ object.description}}</p>
     <p>{{ object.date_deadline}}</p>
     <p class="text-danger">{{ object.remaining_days}}</p>
+   
+    {% if object.image %}
     <hr>
-    {% for image in todolist.todolist_images_set.all %}
-    <a href="{{ image.image.url }}">
-    <img src="{{ image.image.url }}" style="max-width: 20%; height: auto;"  alt="reference_image"></a>
-    {% endfor %}
+    [이미지] 
+    <a href="{{ object.image.url }}">
+    <img src="{{ object.image.url }}" style="max-width: 50%; height: auto;"  alt="reference_image"></a>
+    클릭하시면 원본크기로 볼수 있습니다.
+    </hr>
+    {% endif %}
+   
+    {% if object.file %}
     <hr>
-    
+    [첨부파일]
+    <a href="{{ object.file.url }}">{{object.file.name}}</a>
+    클릭해서 다운로드
+   </hr>
+    {% endif %}
 </div>
 
 <div class="text-center">

@@ -26,7 +26,7 @@
                 <a class="nav-link" href="{% url 'todo:index' %}">Todo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'todo:index' %}">질문 게시판</a>
+                <a class="nav-link" href="{% url 'board:index' %}">질문 게시판</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'todo:index' %}">자료실</a>
@@ -46,13 +46,24 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
+  
               </li>
             </ul>
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>      </nav>
+              <button class="btn btn-outline-secondary" type="submit">Search</button>
+              &ensp;&ensp;
+            </form><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>      
+           <div class="btn-group">
+             {% if user.is_authenticated %}
+            <button type="button" class="btn btn-outline-danger" onclick="location.href='{% url 'account_logout' %}'">Log Out</button>
+            {% else%}
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='{% url 'account_signup' %}'">Sign Up</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'account_login' %}'">Log In</button>
+           {% endif %}
+          </div>
+          </nav>
+            
             {% block content %}{% endblock %}
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!--js cdn 주소 -->
