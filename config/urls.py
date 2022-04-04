@@ -26,6 +26,8 @@ urlpatterns = [
     path('todo/', include('todo.urls')),
     path('accounts/', include('allauth.urls')),
     path('board/', include('board.urls')),
+    path('common/', include('common.urls')),
+    
 ]
 
 urlpatterns += static(
