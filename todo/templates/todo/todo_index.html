@@ -3,7 +3,7 @@
 {% block title %}todo_list.html{% endblock %}
  
 {% block content %}
-
+<div class = "container index">
 <h2>&nbsp;&nbsp;&nbsp;&nbsp;Todo List!!</a></h2>
 
 <br>
@@ -25,9 +25,10 @@
         </div>
         {% endfor %}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <a href="{% url 'todo:list' %}" class="btn btn-primary mt-5" type="button" >목록으로 보기</a>
-          <a href="{% url 'todo:create' %}" class="btn btn-dark mt-5" type="button" >할일 만들기</a>
+          <a href="{% url 'todo:list' %}" class="btn btn-secondary mt-5" type="button" >목록으로 보기</a>
+          <a href="{% url 'todo:create' %}" class="btn btn-primary mt-5" type="button" >할일 만들기</a>
         </div>
       </div>
     </ul>
+  </div>
 {% endblock %}
