@@ -23,7 +23,10 @@
         <tr>
             <!-- # = entire - satrt index - current index +1 -->
             <th scope="row">{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1}}</th>
-            <td><a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a></td>
+            <td><a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a>
+            {% if question.answer_set.count > 0 %}
+            <span class="text-danger small mx-2">{{ question.answer_set.count }}</span>
+            {% endif %}</td>
             <td></td>
             <td>{{ question.create_date }}</td>
         </tr>
