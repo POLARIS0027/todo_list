@@ -10,6 +10,7 @@ class Question(models.Model):
     content = models.TextField(verbose_name='질문내용')
     create_date = models.DateTimeField(auto_now=True, verbose_name='작성일시')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.subject
@@ -19,4 +20,5 @@ class Answer(models.Model):
     content = models.TextField(verbose_name='답변내용')
     create_date = models.DateTimeField(auto_now=True, verbose_name='작성일시')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    modify_date = models.DateTimeField(auto_now=True)
     

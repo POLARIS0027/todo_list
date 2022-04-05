@@ -1,0 +1,28 @@
+{%extends 'base.html' %}
+ 
+{% block title %}answer_delete.html{% endblock %}
+ 
+{% block content %}
+<div class="text-center">
+    
+    <form action="" method="POST">
+    
+    {{ form }}
+    {% csrf_token %}
+<div class="field is-grouped is-grouped-centered">
+    
+    <p class="control">
+        해당 답변을 삭제하시겠습니까?
+      </p>
+  </div>
+    <p class="control">
+        
+      <input type="submit" class="btn btn-danger" value="삭제">
+      <a class="btn btn-secondary" href="{% url 'board:detail' object.id %}">
+        취소
+      </a>
+    </p>
+    </form>
+</div>
+ 
+{% endblock %}
