@@ -1,5 +1,6 @@
 {%extends 'base.html' %}
- 
+{% load socialaccount %}
+
 {% block title %}signup.html{% endblock %}
  
 {% block content %}
@@ -23,7 +24,8 @@
             <label for="email">e-mail</label>
             <input type="text" class="form-control" name="email" id="email" value="{{ form.email.value|default_if_none:'' }}">
         </div>
-        <button type="submit" class="btn btn-primary mt-5">Sign Up</button> 
+        <button type="submit" class="btn btn-primary mt-5">Sign Up</button>
+        <button type="button" class="btn btn-dark mt-5" onclick="location.href='{% provider_login_url 'google' %}'">Google Login</button>
         
     </form>
 </div>
