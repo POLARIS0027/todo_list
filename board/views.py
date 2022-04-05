@@ -111,7 +111,7 @@ class AnswerDeleteView(DeleteView):
     
     def get_success_url(self):
         return reverse('board:detail', kwargs={'question_id': self.object.question.id})
-    r
+    
 
     
     
