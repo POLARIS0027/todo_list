@@ -108,7 +108,11 @@ class QuestionDeleteView(DeleteView):
 class AnswerDeleteView(DeleteView):
     model = Answer
     template_name = 'board/answer_delete.html'
-    success_url = reverse_lazy('board:index')
+    
+    def get_success_url(self):
+        return reverse('board:detail', kwargs={'question_id': self.object.question.id})
+    r
+
     
     
 

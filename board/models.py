@@ -1,6 +1,7 @@
 from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 # Create your models here.
@@ -14,6 +15,8 @@ class Question(models.Model):
     
     def __str__(self):
         return self.subject
+    
+    
     
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='답변제목')
