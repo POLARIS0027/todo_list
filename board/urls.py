@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path 
-from board.views import index, detail, answer_create, question_create, question_modify, QuestionDeleteView, AnswerDeleteView
+from board.views import index, detail, answer_create, QuestionDeleteView, AnswerDeleteView, question_create, question_modify
 from board import views
 
 app_name = 'board'
