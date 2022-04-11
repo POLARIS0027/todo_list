@@ -1,0 +1,37 @@
+{%extends 'base.html' %}
+ 
+{% block title %}infolist.html{% endblock %}
+ 
+{% block content %}
+
+<div class="container">
+    <table class="table table-striped" style="table-layout: fixed"  >
+        <thead class="table-dark text-center">
+        <tr>
+            <th scope="col" width="3%">#</th>     
+            <th scope="col" width="60%">제목</th>
+            <th scope="col" width="20%">작성자</th>
+            <th scope="col" width="17%">작성일시</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+            {% if object_list %}
+            {% for info in object_list %}
+        <tr>
+            <td></td>
+            <td class="text-start"><a href="{% url 'info:detail' info.id %}">{{ info.title }}</a>
+            </td>
+            <td>Admin</td>
+            <td>{{ info.date_created }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">등록된 자료가 없습니다.</td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+
+ 
+{% endblock %}

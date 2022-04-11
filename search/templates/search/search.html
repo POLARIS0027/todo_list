@@ -1,0 +1,15 @@
+{%extends 'base.html' %}
+ 
+{% block title %}search.html{% endblock %}
+ 
+{% block content %} 
+            {% for question in questions_search %}
+        <tr>
+            <!-- # = entire - satrt index - current index +1 -->
+            <td class="text-start"><a href="{{ question.get_url }}">{{ question.subject }}</a>
+            <td>{{ question.author.username }}</td>
+            <td>{{ question.create_date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
