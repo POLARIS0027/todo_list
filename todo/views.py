@@ -8,8 +8,7 @@ from django.views.generic import ListView, TemplateView, DetailView, DeleteView,
 from django.urls import reverse_lazy
 from datetime import date
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
-from django.http import HttpResponseRedirect
+
 # Create your views here.
 
 class TodoIndexView(LoginRequiredMixin, ListView):
