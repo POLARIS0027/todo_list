@@ -2,6 +2,7 @@ from distutils.log import info
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from info.models import Info
 
@@ -26,7 +27,8 @@ class InfoListView(ListView):
         return info_list
 
     
-class InfoDetailView(DetailView):
+class InfoDetailView(LoginRequiredMixin, DetailView):
+    login_url='common:login'
     model = Info
     template_name = 'info/info_detail.html'
     context_object_name = 'info'

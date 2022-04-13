@@ -24,6 +24,7 @@ def index(request):
     context = {'question_list': page_obj}
     return render(request, 'board/question_list.html', context)
 
+@login_required(login_url='common:login')
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}

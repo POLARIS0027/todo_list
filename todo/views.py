@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect
 class TodoIndexView(LoginRequiredMixin, ListView):
     context_object_name = 'todo_list'
     template_name = 'todo/todo_index.html' 
+    login_url='common:login'
     
     def get_queryset(self):
         return TodoList.objects.filter(author=self.request.user)
@@ -23,6 +24,7 @@ class TodoListView(LoginRequiredMixin, ListView):
     model = TodoList
     template_name = 'todo/todo_list.html'
     context_object_name = 'todo_list'
+    login_url='common:login'
     
     def get_queryset(self):
         return TodoList.objects.filter(author=self.request.user)
@@ -31,29 +33,34 @@ class TodoDetailView(LoginRequiredMixin, DetailView):
     model = TodoList
     context_object_name = 'todo'
     template_name = 'todo/todo_detail.html'
+    login_url='common:login'
 
     
 class TodoDeleteView(LoginRequiredMixin, DeleteView):
     model = TodoList
     template_name = 'todo/todo_delete.html'
     success_url = reverse_lazy('todo:index')
+    login_url='common:login'
     
 class TodoCompleteView(LoginRequiredMixin, DeleteView):
     model = TodoList
     template_name = 'todo/todo_complete.html'
     success_url = reverse_lazy('todo:index')
+    login_url='common:login'
 
 class TodoUpdateView(LoginRequiredMixin, UpdateView):
     model = TodoList
     fields = ['name', 'description', 'date_deadline','image', 'file']
     template_name = 'todo/todo_update.html'
     success_url = reverse_lazy('todo:index')
+    login_url='common:login'
     
 class TodoCreateView(LoginRequiredMixin, CreateView):
     model = TodoList
     form_class = TodoCreateForm
     template_name = 'todo/todo_create.html'
     success_url = reverse_lazy('todo:index')
+    login_url='common:login'
     
     def form_valid(self, form):
             todoimage = form.save(commit=False)
