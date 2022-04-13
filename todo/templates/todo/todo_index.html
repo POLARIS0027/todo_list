@@ -9,6 +9,7 @@
 <br>
    <ul>
       <div class="row">
+        {% if todo_list %}
         {% for todo in todo_list %}
         <div class="col-sm-3">
           <div class="card">
@@ -24,6 +25,9 @@
           </div>
         </div>
         {% endfor %}
+        {% else %}
+         <p>Todo가 없습니다. 하나 만들어보는건 어떨까요?</p>
+         {% endif %}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <a href="{% url 'todo:list' %}" class="btn btn-secondary mt-5" type="button" >목록으로 보기</a>
           <a href="{% url 'todo:create' %}" class="btn btn-primary mt-5" type="button" >할일 만들기</a>

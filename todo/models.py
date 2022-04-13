@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -11,6 +11,7 @@ class TodoList(models.Model):
     date_deadline = models.DateField(verbose_name="마감일")
     image = models.ImageField(null=True, blank=True, upload_to="", verbose_name='이미지')
     file = models.FileField(null=True, blank=True, upload_to="uploads/", verbose_name='파일')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, name='author')
     
     def remaining_days(self):
         delta = self.date_deadline - date.today()

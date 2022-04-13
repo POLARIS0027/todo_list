@@ -14,7 +14,7 @@
 <body style="padding-top:90px;"> <!-- 위에서 90픽셀 띄워주고-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <!-- navbar 위에 고정-->
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">과외 대시보드</a>
+          <a class="navbar-brand" href="#">StudyHub</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -27,10 +27,10 @@
                 <a class="nav-link" href="{% url 'todo:index' %}">Todo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'board:index' %}">질문 게시판</a>
+                <a class="nav-link" href="{% url 'board:index' %}">Q/A</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'info:index' %}">자료실</a>
+                <a class="nav-link" href="{% url 'info:index' %}">Archive</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'todo:index' %}">Intoduce_myself</a>
@@ -50,7 +50,7 @@
   
               </li>
             </ul>
-            <form class="d-flex" action="{% url 'search:searchResult' %}" method="post">
+            <form class="d-flex" action="#" method="get">
               {% csrf_token %}
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="kw">
               <button class="btn btn-outline-secondary" type="submit">Search</button>

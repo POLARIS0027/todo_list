@@ -20,7 +20,7 @@
         <tr>
             <!-- # = entire - satrt index - current index +1 -->
             <td scope="row">{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1}}</td>
-            <td class="text-start"><a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a>
+            <td class="text-start"><a href="{% url 'board:detail' question.id %}" class="text-decoration-none">{{ question.subject }}</a>
             {% if question.answer_set.count > 0 %}
             <span class="badge bg-secondary text-light mx-2">{{ question.answer_set.count }}</span>
             {% endif %}</td>

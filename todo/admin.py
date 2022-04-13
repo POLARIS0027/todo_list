@@ -4,7 +4,7 @@ from todo.models import TodoList
 
 
 class TodoListAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'date_created','date_deadline',          'remaining_days','image','file')
-    list_filter = ['date_created']
+    list_display = ('name', 'description', 'date_created','date_deadline',          'remaining_days','image','author')
+    list_filter = ['date_created', 'author']
     
 admin.site.register(TodoList, TodoListAdmin,)

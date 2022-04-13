@@ -1,4 +1,5 @@
 {%extends 'base.html' %}
+{% load board_filter %}
  
 {% block title %}infolist.html{% endblock %}
  
@@ -18,8 +19,8 @@
             {% if object_list %}
             {% for info in object_list %}
         <tr>
-            <td></td>
-            <td class="text-start"><a href="{% url 'info:detail' info.id %}">{{ info.title }}</a>
+            <td>{{ page_obj.paginator.count|sub:page_obj.start_index|sub:forloop.counter0|add:1}}</td>
+            <td class="text-start"><a href="{% url 'info:detail' info.id %}" class="text-decoration-none">{{ info.title }}</a>
             </td>
             <td>Admin</td>
             <td>{{ info.date_created }}</td>
@@ -31,6 +32,39 @@
         </tr>
         {% endif %}
     </table>
+    <ul class="pagination justify-content-center mb-4">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">이전</a>
+        </li>
+        {% endif %}
+
+        {% for index in pagelist %}
+        {% if index == page_obj.number %}
+        <li class="page-item active">
+            <span class="page-link">{{index}}</span>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ index }}">{{ index }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
 </div>
 
  

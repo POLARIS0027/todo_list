@@ -31,6 +31,7 @@
        {% endif %}
   </div>
   <a class="btn btn-secondary mt-5" href="{% url 'todo:list' %}" role="button">목록으로 보기</a>
+  <a href="{% url 'todo:update' todo.id %}" class="btn btn-primary mt-5">수정</a>
   <a class="btn btn-danger mt-5" href="{% url 'todo:delete' object.id %}" role="button">삭제</a>
 </div>
 

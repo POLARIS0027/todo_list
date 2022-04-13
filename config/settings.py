@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'todo.apps.TodoConfig',
     'board.apps.BoardConfig',
     'common.apps.CommonConfig',
-    'search.apps.SearchConfig',
+  
     'info.apps.InfoConfig',
     #for allauth
     'django.contrib.sites',
