@@ -9,11 +9,12 @@
 <br>
    <ul>
      {% if todo_list %}
-        {% for todo in todo_list %}
-      <div class="row">   
-        <div class="col-sm-3 mb-1">
+      <div class="row">
+        {% for todo in todo_list %}   
+        <div class="col-sm-3">
           <div class="card h-100" style="width: 20rem;">
             <div class="card-body d-flex flex-column">
+              
               <h5 class="card-title">{{ todo.name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">마감 : {{ todo.date_deadline }} | {{ todo.remaining_days }}</h6>
               <p class="card-text h-100 mt-2">{{ todo.description }}</p>
