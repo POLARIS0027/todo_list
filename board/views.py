@@ -10,6 +10,7 @@ from django.views.generic import DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 
 # Create your views here.
 
@@ -124,7 +125,19 @@ class AnswerDeleteView(DeleteView):
     def get_success_url(self):
         return reverse('board:detail', kwargs={'question_id': self.object.question.id})
     
-
+def search(request):
+    content_list = Question.objects.all()
+    search = request.GET.get('search','')
+    if search:
+        search_list = content_list.filter(
+            Q(subject__icontains = search)|Q(content__icontains = search)
+        )
+        paginator = Paginator(search_list, 10)
+        page = request.GET.get('page','')
+        questions = paginator.get_page(page)
+        question = Question.objects.all()
+        
+        return render(request, 'board/search.html',{'questions':questions, 'question':question, 'search':search})
     
     
 

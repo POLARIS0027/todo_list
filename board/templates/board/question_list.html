@@ -73,8 +73,14 @@
         {% endif %}
     </ul>
     <!-- 페이지 처리 끝 -->
-
+<div class="d-flex justify-content-between">
     <a href="{% url 'board:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+    <form class="d-flex" action="{% url 'board:search'%}" method="GET">
+        {% csrf_token %}
+        <input class="form-control me-2" type="text" placeholder="Q/A Search" id="search" aria-label="Search" name="search" value="{{search|default_if_none:''}}">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </div>
 </div>
  
 {% endblock %}

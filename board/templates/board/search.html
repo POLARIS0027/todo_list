@@ -1,0 +1,90 @@
+{%extends 'base.html' %}
+ 
+{% block title %}search.html{% endblock %}
+ 
+{% block content %}
+
+{% load board_filter %}
+<div class="container">
+<form method="GET" action="{%url 'board:search'%}">
+    <div class="pagination">
+        <span>검색 결과 {{questions.paginator.num_pages}}페이지 중 {{questions.number}} 페이지 </span>
+    </div>
+        <table class="table table-striped" style="table-layout: fixed"  >
+        <thead class="table-dark text-center">
+        <tr>
+            <th scope="col" width="3%">#</th>     
+            <th scope="col" width="60%">제목</th>
+            <th scope="col" width="20%">작성자</th>
+            <th scope="col" width="17%">작성일시</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+            {% if questions %}
+            {% for q in questions %}
+          
+        <tr>
+            <!-- # = entire - satrt index - current index +1 -->
+            <td>{{forloop.counter0|add:1}}</td>
+            <td class="text-start"><a href="{% url 'board:detail' q.id %}" class="text-decoration-none">{{ q.subject }}</a>
+            {% if q.answer_set.count > 0 %}
+            <span class="badge bg-secondary text-light mx-2">{{ q.answer_set.count }}</span>
+            {% endif %}</td>
+            <td>{{ q.author.username }}</td>
+            <td>{{ q.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">검색결과가 없습니다.</td>
+        </tr>
+        {% endif %}
+    </table>
+        <ul class="pagination justify-content-center">
+            <!-- 이전 페이지 -->
+            {% if questions.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.previous_page_number }}&search={{search}}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- page list -->
+            {% for page_number in questions.paginator.page_range %}
+            <!-- page left,right 5-->
+            {% if page_number >= questions.number|add:-5 and page_number <= questions.number|add:5 %} 
+                {%if page_number == questions.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ page_number }}&search={{search}}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_number }}&search={{search}}">{{ page_number}}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+            {% endfor %}
+            <!-- next page -->
+            {% if questions.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ questions.next_page_number }}&search={{search}}">다음</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                </li>
+            {% endif %}
+        </ul>
+        <!-- 페이지 처리 끝 -->
+        <div id="search" class="d-flex justify-content-between">
+            <div>&emsp;</div>
+            <div class="d-flex">
+            <input class="form-control me-2" name="search" type="text" id="search" name="search">
+            <button class="btn btn-outline-secondary" type="submit" placeholder="Q/A Search">search</button>
+            </div>
+        </div>
+</div>
+</form>
+{% endblock %}
