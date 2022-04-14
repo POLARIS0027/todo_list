@@ -22,7 +22,7 @@ from .settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('todo/', include('todo.urls')),
     path('accounts/', include('allauth.urls')),
     path('board/', include('board.urls')),
