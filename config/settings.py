@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'todo.apps.TodoConfig',
     'board.apps.BoardConfig',
     'common.apps.CommonConfig',
+    'introduce.apps.IntroduceConfig',
   
     'info.apps.InfoConfig',
     #for allauth

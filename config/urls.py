@@ -28,6 +28,7 @@ urlpatterns = [
     path('board/', include('board.urls')),
     path('common/', include('common.urls')),
     path('info/', include('info.urls')),
+    path('introduce/', include('introduce.urls')),
     
 ]
 

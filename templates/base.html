@@ -9,17 +9,18 @@
 {% block extra-style %}{% endblock %}
 {% load socialaccount %}
 </head> 
+
 <body style="padding-top:90px;"> <!-- 위에서 90픽셀 띄워주고-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top"> <!-- navbar 위에 고정-->
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">StudyHub</a>
+          <a class="navbar-brand" href="{% url 'home' %}">StudyHub</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Lectures</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'todo:index' %}">Todo</a>
@@ -31,9 +32,10 @@
                 <a class="nav-link" href="{% url 'info:index' %}">Archive</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin:index' %}">Intoduce_myself</a>
+                <a class="nav-link" href="{% url 'introduce:intro' %}">Introduce</a>
               </li>
-              <li class="nav-item dropdown">
+            
+              {% comment %} <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
                 </a>
@@ -43,9 +45,11 @@
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-              </li>
+              </li> {% endcomment %}
+            </ul>
+            <ul class="navbar-nav me-right mb-2 mb-lg-0">
               <li class="nav-item">
-  
+                <a class="nav-link fw-bold" href="{% url 'admin:index' %}">Admin</a>
               </li>
             </ul>
             {% comment %} <form class="d-flex" action="{% url 'board:search'%}" method="GET">
