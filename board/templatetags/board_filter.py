@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+#掲示物番後を表示するため引き算が必要だけど、addしかなくてテンプレートフィルターを作成
 @register.filter
 def sub(value, arg):
     return value - arg

@@ -5,8 +5,8 @@ from django.forms import inlineformset_factory
 
 class QuestionForm(forms.ModelForm):
     class Meta:
-        model = Question #사용하는 모델
-        fields = ['subject', 'content',] #폼에서 사용할 모델 속성
+        model = Question #使用するモデル
+        fields = ['subject', 'content',] #フォームで使おうとするモデルのフィルド
         labels = {
             'subject': '제목',
             'content': '내용',
@@ -27,3 +27,4 @@ class ImageForm(forms.ModelForm):
         fields = ['image',]
         
 ImageFormSet = inlineformset_factory(Question, Image, form=ImageForm, extra=3)
+#Inlineformset_factoryを利用して、フォームの中に他のフォームを挿入し一つのフォームのように使える。

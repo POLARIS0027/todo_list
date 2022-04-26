@@ -16,3 +16,5 @@ urlpatterns =[
     path('answer/delete/<int:pk>/', AnswerDeleteView.as_view(), name='answer_delete'),
     path('search/', views.search, name='search'),
 ]
+
+#generic viewの場合、基本がpkとなっているが、function viewの場合はquestion_id,answer_idでprimaryを設定しておいた。

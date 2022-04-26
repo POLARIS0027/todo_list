@@ -12,7 +12,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password = raw_password)
-    #user authenticate
+    #user認証
             login(request, user) #login
             return redirect('home')
     else:

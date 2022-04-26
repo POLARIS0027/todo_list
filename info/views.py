@@ -16,7 +16,7 @@ class InfoListView(ListView):
     ordering = '-date_created'
     
     def get_context_data(self, **kwargs):
-        context = super(InfoListView, self).get_context_data()
+        context = super(InfoListView, self).get_context_data() #paginatorを使うため、まずsuperを使って元のデータを読み取る。
         page = context['page_obj']
         paginator = page.paginator
         pagelist = paginator.get_elided_page_range(page.number, on_each_side=3, on_ends=0)
@@ -24,12 +24,12 @@ class InfoListView(ListView):
         return context
     
     def get_queryset(self):
-        info_list = Info.objects.order_by('-date_created')
+        info_list = Info.objects.order_by('-date_created') #作成日順に表示
         return info_list
 
     
 class InfoDetailView(LoginRequiredMixin, DetailView):
-    login_url='common:login'
+    login_url='common:login' #loginしてなかったらloginページにredirect
     model = Info
     template_name = 'info/info_detail.html'
     context_object_name = 'info'
@@ -37,12 +37,12 @@ class InfoDetailView(LoginRequiredMixin, DetailView):
 def search(request):
     content_list = Info.objects.all()
     search = request.GET.get('search','')
-    if search:
+    if search: #.filterはandが含まれているから、orを使いたい場合はQ objectsを利用.
         search_list = content_list.filter(
             Q(title__icontains = search)|Q(content__icontains = search)|Q(file__icontains = search )
-        )
+        ) #icontainsを使うと、大文字小文字を区別しない
         paginator = Paginator(search_list, 10)
-        page = request.GET.get('page','')
+        page = request.GET.get('page','') #GETリクエストでキーワードを貰う
         infos = paginator.get_page(page)
         info = Info.objects.all()
         

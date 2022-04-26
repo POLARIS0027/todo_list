@@ -18,7 +18,8 @@
             {% if question_list %}
             {% for question in question_list %}
         <tr>
-            <!-- # = entire - satrt index - current index +1 -->
+            <!-- 掲示物番号＝全体掲示物の数ー現在ページスタートインデックスー現在インデックス＋１ -->
+            <!-- add　機能がないので、テンプレートフィルターを作って利用する-->
             <td scope="row">{{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1}}</td>
             <td class="text-start"><a href="{% url 'board:detail' question.id %}" class="text-decoration-none">{{ question.subject }}</a>
             {% if question.answer_set.count > 0 %}
@@ -34,9 +35,9 @@
         </tr>
         {% endif %}
     </table>
-    <!-- 페이지 처리 시작-->
+    <!-- ページ処理スタート-->
     <ul class="pagination justify-content-center">
-        <!-- 이전 페이지 -->
+        <!-- 以前のページ -->
         {% if question_list.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
@@ -46,9 +47,9 @@
             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
         </li>
         {% endif %}
-        <!-- page list -->
+        <!-- ページリスト -->
         {% for page_number in question_list.paginator.page_range %}
-        <!-- page left,right 5-->
+        <!-- 現在ページの左右５個を表示-->
         {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %} 
             {%if page_number == question_list.number %}
             <li class="page-item active" aria-current="page">
@@ -61,7 +62,7 @@
             {% endif %}
             {% endif %}
         {% endfor %}
-        <!-- next page -->
+        <!-- 次のページ -->
         {% if question_list.has_next %}
             <li class="page-item">
                 <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
@@ -72,7 +73,7 @@
             </li>
         {% endif %}
     </ul>
-    <!-- 페이지 처리 끝 -->
+    <!-- ページ処理終わり -->
 <div class="d-flex justify-content-between">
     <a href="{% url 'board:question_create' %}" class="btn btn-primary">질문 등록하기</a>
     <form class="d-flex" action="{% url 'board:search'%}" method="GET">

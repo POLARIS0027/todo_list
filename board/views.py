@@ -15,17 +15,17 @@ from django.db.models import Q
 # Create your views here.
 
 def index(request):
-    #페이지
+    #ページ
     page = request.GET.get('page', '1')
-    #조회
+    #ページ照会
     question_list = Question.objects.order_by('-create_date')
-    #페이지 처리
-    paginator = Paginator(question_list, 10) #페이지당 글 10개
+    #ページ処理
+    paginator = Paginator(question_list, 10) #１ページあたり掲示物の数
     page_obj = paginator.get_page(page)
     context = {'question_list': page_obj}
     return render(request, 'board/question_list.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login') #関数型viewの場合は、デコレーターをつけてログインを必要とさせる
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
@@ -42,14 +42,13 @@ def answer_create(request, question_id):
             answer.question = question
             answer.save()
             return redirect('board:detail', question_id=question.id)
-        #else: 이거 켜면 alert 작동안함
-        #    form = AnswerForm()
+        
     context = {'question': question, 'form': form}
     return render(request, 'board/question_detail.html', context)
 
 @login_required(login_url='common:login')
 def question_create(request):
-    if request.method == 'POST':
+    if request.method == 'POST': #同じフォームを再利用するため、postとgetに分けて作成、修正を分ける。
         question_form = QuestionForm(request.POST)
         image_formset = ImageFormSet(request.POST, request.FILES)
         if question_form.is_valid() and image_formset.is_valid():
@@ -69,7 +68,7 @@ def question_create(request):
 @login_required(login_url='common:login')
 def question_modify(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    if request.user != question.author:
+    if request.user != question.author: #本人確認
         messages.error(request, '수정 권한이 없습니다')
         return redirect('board:detail', question_id=question.id)
     if request.method == "POST":
@@ -126,11 +125,11 @@ class AnswerDeleteView(DeleteView):
         return reverse('board:detail', kwargs={'question_id': self.object.question.id})
     
 def search(request):
-    content_list = Question.objects.all()
+    content_list = Question.objects.all() #まずはobjectを読み取る
     search = request.GET.get('search','')
     if search:
         search_list = content_list.filter(
-            Q(subject__icontains = search)|Q(content__icontains = search)
+            Q(subject__icontains = search)|Q(content__icontains = search) #QとicontainsでOR検索し小文字大文字区別をしなくする。
         )
         paginator = Paginator(search_list, 10)
         page = request.GET.get('page','')

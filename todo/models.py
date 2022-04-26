@@ -13,6 +13,8 @@ class TodoList(models.Model):
     file = models.FileField(null=True, blank=True, upload_to="uploads/", verbose_name='파일')
     author = models.ForeignKey(User, on_delete=models.CASCADE, name='author')
     
+    #別のクラスを作らないでimage,fileフィルドを作ると、１枚しか添付できない。
+    
     def remaining_days(self):
         delta = self.date_deadline - date.today()
         days = delta.days
@@ -24,7 +26,11 @@ class TodoList(models.Model):
             days = abs(days)
             return f'{days}일 지남'
         
+    #残った日数を返還するためにdeltaを指定し、daysを与える。
+        
     
     def __str__(self):
         return f'{self.name} | {self.description} | {self.date_created} |       {self.date_deadline}'
+    
+    # __str__を利用してモデルの表示形式を指定する。
     

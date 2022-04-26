@@ -8,6 +8,8 @@ from django.urls import reverse
 class Info(models.Model):
     title = models.CharField(max_length=60, verbose_name='title')
     content = models.TextField(max_length=200, verbose_name='content')
-    date_created = models.DateField(auto_now_add=True, verbose_name='date')
+    date_created = models.DateField(auto_now_add=True, verbose_name='date') #現在の時間を自動入力
     file = models.FileField(null=True, blank=True, upload_to="uploads/", verbose_name='file')
+    
+    
     

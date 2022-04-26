@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path 
 from todo.views import TodoDeleteView, TodoIndexView, TodoListView, TodoDetailView, TodoUpdateView, TodoCreateView, TodoCompleteView
 
+#includeしてもらったURLを分けて管理すると、app_nameを通じて簡単にurlを管理できる。
 
 app_name = 'todo'
 

@@ -11,6 +11,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
+#Loginが必要なviewには、LoninRequiredMixinを継承させる。
+
 class TodoIndexView(LoginRequiredMixin, ListView):
     context_object_name = 'todo_list'
     template_name = 'todo/todo_index.html' 
@@ -27,6 +29,8 @@ class TodoListView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return TodoList.objects.filter(author=self.request.user)
+    
+    #filterをつけて、要請したユーザのものとidが一致するTodoだけど表示する
     
 class TodoDetailView(LoginRequiredMixin, DetailView):
     model = TodoList
@@ -62,7 +66,7 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
     login_url='common:login'
     
     def form_valid(self, form):
-            todoimage = form.save(commit=False)
+            todoimage = form.save(commit=False) #commit=Falseにしてしたの行も適応できるようにする。
             todoimage.adress =form.cleaned_data['image']
             todoimage.author = self.request.user
             todoimage.save()
