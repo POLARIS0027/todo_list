@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'introduce.apps.IntroduceConfig',
   
     'info.apps.InfoConfig',
-    #for allauth
+    #allauth用
     'django.contrib.sites',
     
     'allauth',
@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     
     
-    #providers for social-login
+    #ソーシャルル・グインプロバイダー
     'allauth.socialaccount.providers.google',
 ]
 
@@ -157,10 +157,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# MEDIA_ROOT 설정 
-# 사용자가 업로드하는 미디어 정적 파일들의 기본 경로 
+# MEDIA_ROOT 設定 
+# MEDIAFILE　基本経路
 MEDIA_ROOT = os.path.join(BASE_DIR, '.media')
 MEDIA_URL = '/media/'
-
+#Static file 基本経路
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
