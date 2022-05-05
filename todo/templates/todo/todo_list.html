@@ -9,9 +9,9 @@
         <thead>
             <tr>
 
-                <th>할일</th>
-                <th>마감일</th>
-                <th>마감</th>
+                <th>Task</th>
+                <th>Deadline</th>
+                <th>To deadline</th>
             </tr>
         </thead>
         <tbody>
@@ -24,14 +24,14 @@
             </tr>
             {% endfor%}
             {% else %}
-            <td>할 일 목록이 없습니다!! 하나 만들어보는건 어떨까요?</td>
+            <td>There is no Task</td>
             {% endif %}
         </tbody>
     </table>
 
     <hr/>
-    <a class="btn btn-secondary pull-right" href="{% url 'todo:index' %}">카드로 보기</a>
-    <a href="{% url 'todo:create' %}" class="btn btn-primary" type="button" >할일 만들기</a>
+    <a class="btn btn-secondary pull-right" href="{% url 'todo:index' %}">Card View</a>
+    <a href="{% url 'todo:create' %}" class="btn btn-primary" type="button" >Create</a>
     <div class="text-center"></div></div>
     
 {% endblock %}

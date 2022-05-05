@@ -19,7 +19,7 @@
             <div class="card-body">
                 <div class="card-text">{{ question.content|mark }}
                 {% if question.image_set.all %}
-                클릭하시면 원본크기로 볼수 있습니다.
+                Click to see original size
                 {% for image in question.image_set.all %} 
                 <a href="{{ image.image.url }}">
                 <img src="{{ image.image.url }}" style="max-width: 50%; height: auto;"  alt="reference_image"></a>
@@ -35,12 +35,12 @@
             </div>
         <div class="my-3">
             {% if request.user == question.author %}
-            <a href="{% url 'board:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary ms-3">수정</a>
-            <a class="btn btn-sm btn-outline-danger" href="{% url 'board:question_delete' question.id %}" role="button">삭제</a>
+            <a href="{% url 'board:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary ms-3">Modify</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'board:question_delete' question.id %}" role="button">Delete</a>
             {% endif %}
         </div>
 </div>  
-    <h5 class="border-bottom my-3 py-2">{{question.answer_set.count }}개의 답변이 있습니다.</h5>
+    <h5 class="border-bottom my-3 py-2">{{question.answer_set.count }}Answer.</h5>
             {% for answer in question.answer_set.all %}
             <div class="card my-3">
                 <div class="card-body">
@@ -54,8 +54,8 @@
                     <div class="my-3">
                         {% if request.user == answer.author %}
                         <a href="{% url 'board:answer_modify' answer.id %}"
-                        class="btn btn-sm btn-outline-secondary">수정</a>
-                        <a class="btn btn-sm btn-outline-danger" href="{% url 'board:answer_delete' answer.id %}" role="button">삭제</a>
+                        class="btn btn-sm btn-outline-secondary">Modify</a>
+                        <a class="btn btn-sm btn-outline-danger" href="{% url 'board:answer_delete' answer.id %}" role="button">Delete</a>
                         {% endif %}
                     </div> 
                 </div>
@@ -74,11 +74,11 @@
     </div>
     {% endif %}  
     <div class="form-group">
-        <label for="content" class="form-label">답변 내용</label>
+        <label for="content" class="form-label">Answer</label>
         <textarea {% if not user.is_authenticated %}disabled{% endif %}
         name="content" id="content" class="form-control" rows="10"></textarea>
     </div>
-    <input type="submit" value="답변등록" class="btn btn-primary pull-right mt-3">
+    <input type="submit" value="Post" class="btn btn-primary pull-right mt-3">
     </form>
 </div>
 {% endblock %}
