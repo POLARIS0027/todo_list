@@ -41,7 +41,7 @@ class HomeView(FormView):
         eventTitle = form.cleaned_data.get("eventTitle")
         start_date_data = form.cleaned_data.get("startDateTime")
         end_date_data = form.cleaned_data.get("endDateTime")
-        discription = form.cleaned_data.get('description')
+        description = form.cleaned_data.get('description')
         
         if start_date_data > end_date_data:
             messages.add_message(self.request, messages.INFO, '시작일이 종료일보다 늦을순 없음')
@@ -56,7 +56,7 @@ class HomeView(FormView):
                 "summary": eventTitle,
                 "start": {"dateTime": start_date_data.isoformat()},
                 "end": {"dateTime": end_date_data.isoformat()},
-                "discription": discription,
+                "description": description,
             },
         ).execute()
         )
