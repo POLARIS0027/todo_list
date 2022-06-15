@@ -40,7 +40,7 @@ class HomeView(FormView):
     def form_valid(self, form):
         eventTitle = form.cleaned_data.get("eventTitle")
         start_date_data = form.cleaned_data.get("startDateTime")
-        end_date_data = form.cleaned_data.get("endDateTime")
+        end_date_data = form.cleaned_data.get("startDateTime")
         description = form.cleaned_data.get('description')
         
         if start_date_data > end_date_data:
@@ -55,7 +55,7 @@ class HomeView(FormView):
             body={
                 "summary": eventTitle,
                 "start": {"dateTime": start_date_data.isoformat()},
-                "end": {"dateTime": end_date_data.isoformat()},
+                "end": {"dateTime": start_date_data.isoformat()},
                 "description": description,
             },
         ).execute()
