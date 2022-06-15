@@ -43,16 +43,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     #myapps
     'todo.apps.TodoConfig',
     'board.apps.BoardConfig',
     'common.apps.CommonConfig',
     'introduce.apps.IntroduceConfig',
+    'cal.apps.CalConfig',
   
     'info.apps.InfoConfig',
     #allauth用
     'django.contrib.sites',
-    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

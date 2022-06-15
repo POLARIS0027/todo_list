@@ -1,0 +1,45 @@
+{% extends 'home1.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <h1 class="event_title">파크골프 예약</h1>
+    <div class="event">
+        {% for item in booking_event %}
+        <ul class="event__list">
+            <li>Event title:{{ item.0 }}</li>
+            <li>Start_date_time:{{ item.1 }}</li>
+            <li>End_date_time:{{ item.2 }}</li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="picker">
+        <form id="picker__confirm" class="picker__confirm" autocomplete="off" action="{% url 'cal:home' %}" method="POST">
+           {% csrf_token %}
+            <div class="picker__component">
+                <p class="picker__label">일정 이름</p>
+                {% render_field  form.eventTitle class+="picker__field" %}
+            </div>
+            <div class="picker__component">
+                <p class="picker__label">시작 시간</p>
+                {% render_field  form.startDateTime class+="picker__field" %}
+            </div>
+            <div class="picker__component">
+                <p class="picker__label">종료 시간</p>
+                {% render_field  form.endDateTime class+="picker__field" %}
+           </div>
+           <div class="picker__component">
+               <p class="picker__label">전화번호/메모</p>
+               {% render_field form.description class+="picker__field" %}
+            <input type="submit" value="Submit" class="picker__button">
+        </form>
+    </div>
+    <div class="display_message">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+{% endblock %}
