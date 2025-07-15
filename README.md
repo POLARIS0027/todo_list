@@ -1,4 +1,4 @@
-# Django Framewor理解のためのサイドプロジェクト
+# Django Framework理解のためのサイドプロジェクト
 
 ## 1. プロジェクト概要
 
