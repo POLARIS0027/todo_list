@@ -8,6 +8,7 @@
 
 *   **メインページ (Home):**
     *   プロジェクトの所有者に関する簡単な自己紹介を提供します。
+    *   ![src1](https://github.com/user-attachments/assets/7c6781e9-bbeb-4b93-8c5b-72c821e5d9ee)
 *   **授業紹介 (Introduce):**
     *   EJU、JLPTなど、提供する日本語関連の授業項目に関する詳細情報を案内するページです。
 *   **会員管理 (Authentication):**
