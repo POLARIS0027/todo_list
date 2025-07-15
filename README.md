@@ -6,22 +6,31 @@
 
 ## 2. 主な機能
 
-*   **メインページ (Home):**
+*   **メインページ (Home/Lectures):**
     *   プロジェクトの所有者に関する簡単な自己紹介を提供します。
-    *   ![src1](https://github.com/user-attachments/assets/7c6781e9-bbeb-4b93-8c5b-72c821e5d9ee)
-*   **授業紹介 (Introduce):**
-    *   EJU、JLPTなど、提供する日本語関連の授業項目に関する詳細情報を案内するページです。
+![src1](https://github.com/user-attachments/assets/7c6781e9-bbeb-4b93-8c5b-72c821e5d9ee)
+*   **紹介 (Introduce):**
+    *   講師としての経歴・実績を表示するページです。
 *   **会員管理 (Authentication):**
     *   `django-allauth`を利用した強力な会員登録及びログイン・ログアウト機能。
     *   Eメール基盤の認証及びGoogleソーシャルログイン機能を提供します。
 *   **ToDoリスト (Todo List):**
+![src2](https://github.com/user-attachments/assets/5a250f40-feaf-4249-8d88-238c0ed11327)
     *   ログインしたユーザーごとのパーソナライズされたタスクリスト(CRUD)を提供します。
     *   タスクに対する画像及びファイルの添付機能をサポートします。
     *   締め切り日の設定及び残り日数の計算機能があります。
 *   **Q&A掲示板 (Q&A Board):**
+![src3](https://github.com/user-attachments/assets/ed451c0b-352a-4d08-a654-5b565d92f911)
+![src5](Image" src="https://github.com/user-attachments/assets/509563d2-f18e-49a7-a1b4-4e70f542bf03)
+    *   Paginationを作成
+    *   Markdown機能
     *   質問(Question)と回答(Answer)形式の投稿構造を持ちます。
     *   一つの質問に複数の画像を添付することができます。
     *   投稿の作成・修正・削除機能をサポートします。
+*   **管理ページ (Admin Page):**
+![src4](https://github.com/user-attachments/assets/7e2d61ee-e126-4cd6-a24d-40e9b7722a22)
+    *   各モデルの管理ページをカスタマイズし、検索機能、フィルター機能、インライン編集機能などを追加して、データ管理の効率を向上させました
+
 
 ## 3. 使用技術
 
@@ -52,4 +61,12 @@
 
 #### **(4) Djangoフォーム(Form)の習熟**
 `CreateView`と`UpdateView`で`form_valid`メソッドをオーバーライドし、サーバーサイドで`request.user`のような追加情報をデータに注入してから保存する方法を習得しました。`widget_tweaks`を活用してHTMLテンプレートでフォームフィールドのCSSクラスを動的に制御するなど、Djangoのフォームシステムをより効果的に扱えるようになりました。
-  
+
+#### **(5) 管理ページの高度なカスタマイズ (Advanced Admin Page Customization)**
+Djangoの基本的な管理ページをそのまま使うだけでなく、各アプリのadmin.pyファイルを直接編集し、データ管理の利便性を大幅に向上させました。
+*   **リスト表示のカスタマイズ (list_display):
+    *  ToDoリストの管理ページでは、タスク名や作成日だけでなく、モデルに直接定義したカスタムメソッド (remaining_days) の結果も表示するように設定しました。これにより、各タスクの残り日数を一目で把握できます。
+*   **検索及びフィルター機能 (search_fields, list_filter):
+    *  掲示板の質問・回答やToDoリストに検索機能 (search_fields) を追加し、多くのデータの中から目的の情報を素早く見つけられるようにしました。また、作成日や作成者によるフィルター機能 (list_filter) を追加し、データの絞り込みや整理を容易にしました。
+*   **インラインでの関連モデル管理 (inlines):
+    *  質問(Question)の編集ページ内で、関連する画像(Image)を一緒に登録・修正できるインライン機能 (StackedInline) を適用しました。これにより、質問と画像を別々に管理する手間を省き、直感的なデータ管理を実現しました。
